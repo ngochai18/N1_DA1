@@ -53,6 +53,5 @@ if (isset($_GET['act'])) {
                 ob_end_flush();
             }
             break;
-
-
-?>
+    }
+}
