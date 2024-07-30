@@ -51,6 +51,27 @@ if (!isset($_SESSION['user_admin'])) {
                 $results = get_all_loai_sp();
                 include 'category/list.php';
                 break;
+            
+            case 'product-add':
+                $loai_sp = get_all_loai_sp();
+                if(isset($_POST["them_product"])){
+
+                }
+                include 'produc/add.php';
+                break;
+
+            case "update_product":
+                $loai_sp = get_all_loai_sp();
+
+                $error = [];
+                if(isset($_POST["edit_san_pham"])){
+                    $ma_sp = $_POST["ma_sp"];
+                    $ten_san_pham = $_POST["ten_san_pham"];
+                    $don_gia = $_POST["don_gia"];
+                    $ma_loai = $_POST["loai_sp"];
+                    $anh_san_pham = $_FILES['anh_san_phama']['name'];
+                    
+                }
         }
     }
 }
