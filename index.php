@@ -53,5 +53,41 @@ if (isset($_GET['act'])) {
                 ob_end_flush();
             }
             break;
+        case "shop-cart" :
+            require "view/shop-cart.php";
+            break;
+        
+        case "shop-girl-left" :
+            $countAll = get_count_all();
+            if(isset($_GET['cate'])) $id_cate = $GET['cate'];
+            else $id_cate = 0 ;
+            if($id_cate == 0) $count = $countAll;
+            else $count = get_count_cate($id_cate);
+
+            if(isset($_GET['page'])) $page = $_GET['page'];
+            else $page = 1;
+            $listCate = get_list_cate();
+            require "view/shop-grid-left.php";
+            break;
+        
+        case "page-my-account":
+            if(isset($_SESSION['user'])) {
+                $ma_khach_hang = $_SESSION['user']['id'];
+                $listBill = get_list_bill_user($ma_khach_hang);
+                require "view/page-my-account.php";
+            }else require "view/page-404.php";
+            break;
+
+        case "shop-checkout":
+            if(isset($_SESSION['user'])) {
+                $user = get_user_id($user['id']);
+                $ship = "";
+                if(isset($_GET['ship'])) $ship = $_GET['ship'];
+                extract($user);
+                require "view/shop-checkout";
+                
+            }else require "view/page-404.php";
+            break;
     }
+
 }
