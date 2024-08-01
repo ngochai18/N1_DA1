@@ -70,6 +70,7 @@ if (!isset($_SESSION['user_admin'])) {
                     $don_gia = $_POST["don_gia"];
                     $ma_loai = $_POST["loai_sp"];
                     $anh_san_pham = $_FILES['anh_san_phama']['name'];
+                    $mo_ta_tom_tat = $_POST["mo_ta_chi_tiet"];
                     
                 }
         }
