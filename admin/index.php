@@ -71,6 +71,22 @@ if (!isset($_SESSION['user_admin'])) {
                     $ma_loai = $_POST["loai_sp"];
                     $anh_san_pham = $_FILES['anh_san_phama']['name'];
                     $mo_ta_tom_tat = $_POST["mo_ta_chi_tiet"];
+                    $ngay_tao = $_POST["ngay_tao"];
+                    $gia_khuyen_mai = $_POST["gia_khuyen_mai"];
+                    $so_luong = $_POST["so_luong"];
+
+                    if(isset($_FILES["anh_san_phâm"])){
+                        $targer_dir = "../media/product";
+                        $nameImg = $_FILES["anh_san_phama"]["name"];
+                        $targer_file = $targer_dir . $nameImg;
+                        $maxFileSize = 800000;
+                        $allowUpload = true;
+                        $allowTypes = ["jpg", "png", "jpeg", "gif"];
+                        $imageFileType = pathinfo($targer_file, PATHINFO_EXTENSION);
+
+
+                        
+                    }
                     
                 }
         }
