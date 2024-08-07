@@ -88,6 +88,62 @@ if (isset($_GET['act'])) {
                 
             }else require "view/page-404.php";
             break;
+            case "page-login":
+                if (isset($_SESSION['user'])) {
+                    unset($_SESSION['user']);
+                    echo header("refresh: 0");
+                }
+                require "view/page-login.php";
+                break;
+    
+            case "bill":
+                if ($_GET['madonhang']) {
+                    $ma_don_hang = $_GET['madonhang'];
+                    $id = $_SESSION['user']['id'];
+                    $bill = get_bill($id, $ma_don_hang);
+                    if ($bill != []) {
+                        $bill_detail = get_bill_detail($ma_don_hang);
+                        extract($bill);
+                        $totalAll = $don_gia;
+                        require "view/bill.php";
+                    } else {
+                        require "view/page-404.php";
+                    }
+                } else {
+                    require "view/page-404.php";
+                }
+                break;
+    
+            case "forgot-password":
+                require "view/page-forgot-password.php";
+                break;
+    
+            case "bill-user":
+                if ($_GET['madonhang']) {
+                    $ma_don_hang = $_GET['madonhang'];
+                    $id = $_SESSION['user']['id'];
+                    $bill = get_bill($id, $ma_don_hang);
+                    if ($bill != []) {
+                        $bill_detail = get_bill_detail($ma_don_hang);
+                        extract($bill);
+                        $totalAll = $don_gia;
+                        require "view/bill-user.php";
+                    } else {
+                        require "view/page-404.php";
+                    }
+                } else {
+                    require "view/page-404.php";
+                }
+                break;
+    
+            default:
+                require "view/page-404.php";
+                break;
+        }
+    } else {
+        require "view/navbar.php";
+        require "view/home.php";
     }
+    
+    require "view/footer.php";
 
-}
